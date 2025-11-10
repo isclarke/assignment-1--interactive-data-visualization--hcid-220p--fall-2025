@@ -18,3 +18,9 @@ d3.csv('data/data.csv').then(data => {
     const xScale = d3.scaleTime()
         .domain([minDate, maxDate])
         .range([0, 1200]);
+
+    // Create SVG container
+    const svg = d3.select('#data-csv-container')
+        .append('svg')
+        .attr('width', 1200)
+        .attr('height', 1200);

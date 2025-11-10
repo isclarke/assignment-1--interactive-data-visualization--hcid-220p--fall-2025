@@ -13,3 +13,8 @@ d3.csv('data/data.csv').then(data => {
 
     //Count events per date
     const eventCount = d3.rollup(data, v => v.length, d => d3.timeFormat('%Y-%m-%d')(d.date));
+
+    //Scale
+    const xScale = d3.scaleTime()
+        .domain([minDate, maxDate])
+        .range([0, 1200]);

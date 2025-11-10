@@ -34,3 +34,6 @@ d3.csv('data/data.csv').then(data => {
     svg.append('g')
         .attr('transform', 'translate(0, 150)')
         .call(xAxis);
+
+    // Draw Sunday vertical lines
+    const sundays = d3.timeDays(minDate, maxDate).filter(d => d.getDay() === 0);

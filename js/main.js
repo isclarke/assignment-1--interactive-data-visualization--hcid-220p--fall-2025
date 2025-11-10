@@ -25,7 +25,12 @@ d3.csv('data/data.csv').then(data => {
         .attr('width', 1200)
         .attr('height', 1200);
 
-    // Create x-axis
+    // Create X axis
     const xAxis = d3.axisBottom(xScale)
         .ticks(d3.timeDay.every(1))
         .tickFormat(d => d3.timeFormat('%b %d')(d));
+
+    //Move the X axis
+    svg.append('g')
+        .attr('transform', 'translate(0, 150)')
+        .call(xAxis);

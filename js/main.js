@@ -27,3 +27,5 @@ d3.csv('data/data.csv').then(data => {
 
     // Create x-axis
     const xAxis = d3.axisBottom(xScale)
+        .ticks(d3.timeDay.every(1))
+        .tickFormat(d => d3.timeFormat('%b %d')(d));

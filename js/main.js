@@ -37,3 +37,35 @@ d3.csv('data/data.csv').then(data => {
 
     // Draw Sunday vertical lines
     const sundays = d3.timeDays(minDate, maxDate).filter(d => d.getDay() === 0);
+    svg.selectAll('.sunday-line')
+        .data(sundays)
+        .enter()
+        .append('line')
+        .attr('class', 'sunday-line')
+        .attr('x1', d => xScale(d))
+        .attr('x2', d => xScale(d))
+        .attr('y1', 0)
+        .attr('y2', 150);
+
+    // Text for Sunday Indication
+    svg.append('text')
+        .attr('x', 600)
+        .attr('y', 20)
+        .attr('text-anchor', 'middle')
+        .style('font-size', '14px')
+        .text('Sunday starts the week');
+
+        svg.selectAll('.event-line')
+        .data(allDates)
+        .enter()
+        .append('line')
+        .attr('class', 'event-line')
+        .attr('x1', d => xScale(d))
+        .attr('x2', d => xScale(d))
+        .attr('y1', 150)
+        .attr('y2', d => {
+            const key = d3.timeFormat('%Y-%m-%d')(d);
+            const count = eventCount.get(key) || 0;
+            return 150 - (count * 10); // Length proportional to event count
+        });
+});

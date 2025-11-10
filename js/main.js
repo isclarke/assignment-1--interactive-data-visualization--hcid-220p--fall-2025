@@ -24,3 +24,6 @@ d3.csv('data/data.csv').then(data => {
         .append('svg')
         .attr('width', 1200)
         .attr('height', 1200);
+
+    // Create x-axis
+    const xAxis = d3.axisBottom(xScale)

@@ -58,11 +58,14 @@ d3.csv('data/data.csv').then(data => {
     svg.selectAll('.event-line')
         .data(allDates)
         .enter()
+        //Appends line to each placeholder
         .append('line')
         .attr('class', 'event-line')
         .attr('x1', d => xScale(d))
         .attr('x2', d => xScale(d))
+        //Start positon on the X axis
         .attr('y1', 150)
+        //Line determination based on event count for the date
         .attr('y2', d => {
             const key = d3.timeFormat('%Y-%m-%d')(d);
             const count = eventCount.get(key) || 0;
